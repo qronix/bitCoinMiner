@@ -1,0 +1,63 @@
+body{
+    background-color: black;
+    color: white;
+}
+.hudItem{
+    --float: left;
+   --margin-right: 2%;
+    user-select: none;
+}
+#bitCoins{
+    --float: left;
+}
+.main{
+    border:1px solid white;
+    height: 90vh;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+#minerContainer{
+
+}
+
+.miner{
+    border:1px solid white;
+    align-content: center;
+    width: 50%;
+    margin-top: 20vh;
+}
+
+.minerClick{
+    transition: all 0.01s;
+}
+
+.minerClick:active{
+    transform: scale(0.9);
+}
+.hidden{
+    display: none;
+}
+#upgradeWindowTitle{
+    color: black;
+    margin: 0 auto;
+}
+.modal-body{
+    color: black;
+    border: 0;
+}
+.modal-header{
+    border: none;
+}
+.modal-footer{
+    border: none;
+}
+.upgradeImg{
+    width: 50%;
+    align-content: center;
+}
+.upgradeDesc{
+    align-content: center;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 90%;
+}

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="./stylesheets/main.css">
+    <title>BitMiner Online</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    
+    <div class="container main">
+        <div class="container" id="hud">
+           <div class="row">
+                   <div class="col">
+                       <p id="moneyLabel" class="hudItem">$ <span id="moneyAmt">0</span></p>
+                   </div>
+                   <div class="col">
+                    <p id="bitCoins" class="hudItem">B <span id="bitCoinAmt">0</span></p>
+                   </div>
+                   <div class="col">
+                       <p id="userName" class="hudItem"></p>
+                   </div>
+                   <div class="col">
+                       <button type="button" data-toggle="modal" data-target="#minerUpgradeWindow" class="btn btn-primary" id="minerUpgradeBtn">Miner Upgrades</button>
+                   </div>
+                   <div class="col">
+                       <button type="button" data-toggle="modal" data-target="systemUpgradeWindow" class="btn btn-primary" id="systemUpgradeBtn">System Upgrades</button>
+                   </div>       
+           </div>
+        </div>
+
+            <div class="modal fade" id="minerUpgradeWindow" tabindex="-1" role="dialog" aria-labelledby="upgradeWindow" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="upgradeWindowTitle">Miner Upgrades</h5>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+               <div class="col">
+                    <img src="./imgs/caffeine.png" class="upgradeImg"> 
+               </div>
+                <div class="col-6 upgradeDesc">
+                    <p class="upgradeDesc">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys my fly off! (This upgrade will increase your passive money rate).</p>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary upgBtn" id="caffeine">
+                        $1000
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div> <!--end miner upgrades modal-->
+        <div class="modal fade" id="systemUpgradeWindow" tabindex="-1" role="dialog" aria-labelledby="systemUpgradeWindow" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="upgradeWindowTitle">System Upgrades</h5>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+               <div class="col">
+                    <img src="./imgs/caffeine.png" class="upgradeImg"> 
+               </div>
+                <div class="col-6 upgradeDesc">
+                    <p class="upgradeDesc">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys my fly off! (This upgrade will increase your passive money rate).</p>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary upgBtn" id="caffeine">
+                        $1000
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div> <!--end system upgrades modal-->
+
+        <div class="container miner">
+            <div id="minerContainer" class="minerClick">
+                <img class="img-fluid" src="./imgs/miner.png">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./scripts/game.js"></script>
+    <script type="text/javascript">
+        //init();
+        var myUser = new User("asshole");
+        var system = new System();
+        var moneyHud = document.querySelector("#moneyAmt");
+        var bitCoinAmt = document.querySelector("#bitCoinAmt");
+        var gameArea = document.querySelector(".miner");
+        var minerImg = document.querySelector("#minerContainer");
+        var upgBtns = document.querySelectorAll(".upgBtn");
+        
+        upgBtns.forEach(function(btn){
+           btn.addEventListener("click",function(){
+              var gotUpg = myUser.updateUpg(btn.id);
+               if(gotUpg){
+                   btn.disabled = true;
+                   console.log("Disabled");
+                   btn.textContent = "Owned";
+               }
+           }); 
+        });
+        
+        minerImg.addEventListener("click",function(){
+            myUser.work();
+            updateHud();
+        });
+        
+        var upgrades = myUser.getUpgrades();
+ 
+        function updateHud(){
+            moneyHud.innerHTML = myUser.getMoney();
+            bitCoinAmt.innerHTML= myUser.getBitCoins();
+        }
+        
+        setInterval(function(){
+            myUser.mine(system.getTimeToCoin());
+            updateHud();
+        },10);
+      </script>
+  </body>
+</html>
