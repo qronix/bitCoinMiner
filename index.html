@@ -17,7 +17,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
     
     <div class="container main">
         <div class="container" id="hud">
@@ -33,13 +32,7 @@
                    </div>
                    <div class="col">
                        <a data-toggle="modal" data-target="#menuWindow" class="hudBtn" id="minerUpgradeBtn">Menu</a>
-                   </div>
-                   <!--<div class="col">
-                       <button type="button" data-toggle="modal" data-target="#minerUpgradeWindow" class="btn btn-primary hudBtn" id="minerUpgradeBtn">Miner Upgrades</button>
-                   </div>
-                   <div class="col">
-                       <button type="button" data-toggle="modal" data-target="#systemUpgradeWindow" class="btn btn-primary hudBtn" id="systemUpgradeBtn">System Upgrades</button>
-                   </div>-->       
+                   </div>    
            </div>
         </div>
                         <div class="modal fade" id="menuWindow" tabindex="-1" role="dialog" aria-labelledby="menu window" aria-hidden="true">
@@ -74,19 +67,32 @@
       </div>
       <div class="modal-body">
         <div class="container">
-            <div class="row">
+            <div class="row upgradeRow">
                <div class="col upgradeItem">
-                    <img src="./imgs/caffeine.png" class="upgradeImg "> 
+                    <img src="./imgs/caffeine.png" class="upgradeImg"> 
                </div>
                 <div class="col-6 upgradeDesc upgradeItem">
                     <p class="upgradeDesc ">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys may fly off! (This upgrade will increase your passive money rate).</p>
                 </div>
                 <div class="col upgradeItem">
                     <button type="button" class="btn hudBtn upgBtn" id="caffeine">
-                        $1000
+                        $1,000
                     </button>
                 </div>
-            </div>
+            </div><!--end upgrade item-->
+            <div class="row upgradeRow">
+               <div class="col upgradeItem">
+                    <img src="./imgs/pills.png" class="upgradeImg "> 
+               </div>
+                <div class="col-6 upgradeDesc upgradeItem">
+                    <p class="upgradeDesc ">Fueled by Mexican black market "focus supplements", your miner stays awake for periods of days as he furiously hacks away on the cracking plastic keys of his weapon of mass destruction.</p>
+                </div>
+                <div class="col upgradeItem">
+                    <button type="button" class="btn hudBtn upgBtn" id="pills">
+                        $5,000
+                    </button>
+                </div>
+            </div><!--end upgrade item-->
         </div>
       </div>
       <div class="modal-footer">
@@ -102,16 +108,16 @@
       </div>
       <div class="modal-body">
         <div class="container">
-            <div class="row">
-               <div class="col">
-                    <img src="./imgs/caffeine.png" class="upgradeImg"> 
+            <div class="row upgradeRow">
+               <div class="col upgradeItem">
+                    <img id="ramImg" src="./imgs/ram.png" class="upgradeImg"> 
                </div>
-                <div class="col-6 upgradeDesc">
-                    <p class="upgradeDesc">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys may fly off! (This upgrade will increase your passive money rate).</p>
+                <div class="col-5 upgradeDesc upgradeItem">
+                    <p class="upgradeDesc">Stuff your clunker of a system full of RAM and boost your Bitcoin mining speed. Maybe one day you will be able to afford a proper system.</p>
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-primary upgBtn" id="caffeine">
-                        $1000
+                <div class="col upgradeItem">
+                    <button type="button" class="btn hudBtn upgBtn sysUpg" id="ram">
+                        $10,000
                     </button>
                 </div>
             </div>
@@ -140,18 +146,29 @@
         var minerImg = document.querySelector("#minerContainer");
         var upgBtns = document.querySelectorAll(".upgBtn");
         
-        $(function(){
-           //$('.hudItem').matchHeight(); 
-        });
         upgBtns.forEach(function(btn){
-           btn.addEventListener("click",function(){
-              var gotUpg = myUser.updateUpg(btn.id);
-               if(gotUpg){
-                   btn.disabled = true;
-                   console.log("Disabled");
-                   btn.textContent = "Owned";
-               }
-           }); 
+            if(btn.classList.contains("sysUpg")){
+                btn.addEventListener("click",function(){
+                    console.log("This is a sys upgrade");
+                    var gotUpg = system.updateUpg(myUser,btn.id);
+                    if(gotUpg){
+                        btn.disabled = true;
+                        console.log("Disabled");
+                        btn.textContent = "Owned";
+                    }
+                }); 
+            }else{
+                btn.addEventListener("click",function(){
+                    console.log("Not sys upg");
+                    var gotUpg = myUser.updateUpg(btn.id);
+                    if(gotUpg){
+                        btn.disabled = true;
+                        console.log("Disabled");
+                        btn.textContent = "Owned";
+                    }
+                }); 
+            }
+           
         });
         
         minerImg.addEventListener("click",function(){
@@ -170,6 +187,11 @@
             myUser.mine(system.getTimeToCoin());
             updateHud();
         },100);
+        
+        setInterval(function(){
+           myUser.work();
+            updateHud();
+        },200);
       </script>
   </body>
 </html>

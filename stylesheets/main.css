@@ -13,6 +13,7 @@ body{
     align-content: center;
     text-align: center;
     display: inline-block;
+    font-size: 150%;
 }
 .main{
     border:1px solid white;
@@ -23,7 +24,7 @@ body{
     padding: 0;
 }
 .miner{
-    border:1px solid white;
+    --border:1px solid white;
     align-content: center;
     width: 50%;
     margin-top: 20vh;
@@ -171,4 +172,18 @@ div{
 
 .upgBtn{
     margin-top: 23%;
+}
+
+.upgradeRow{
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+#ramImg{
+    width: 100%;
+    --border: 1px solid green;
+    --text-align: center;
+    --align-content: center;
+    --margin: 0 auto;
 }
