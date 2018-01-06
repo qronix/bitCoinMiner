@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="./stylesheets/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
     <title>BitMiner Online</title>
   </head>
   <body>
@@ -16,27 +17,54 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
     
     <div class="container main">
         <div class="container" id="hud">
            <div class="row">
-                   <div class="col">
-                       <p id="moneyLabel" class="hudItem">$ <span id="moneyAmt">0</span></p>
+                   <div class="col-4 hudItem">
+                       <p id="moneyLabel">$ <span id="moneyAmt">0</span></p>
+                   </div>
+                   <div class="col bitCoin">
+                       <img id="bitCoinIco" class="img-fluid" src="./imgs/Bitcoin.png">
+                   </div>
+                   <div class="col-4 hudItem">
+                       <p id="bitCoins"><span id="bitCoinAmt">0</span></p>
                    </div>
                    <div class="col">
-                    <p id="bitCoins" class="hudItem">B <span id="bitCoinAmt">0</span></p>
+                       <a data-toggle="modal" data-target="#menuWindow" class="hudBtn" id="minerUpgradeBtn">Menu</a>
+                   </div>
+                   <!--<div class="col">
+                       <button type="button" data-toggle="modal" data-target="#minerUpgradeWindow" class="btn btn-primary hudBtn" id="minerUpgradeBtn">Miner Upgrades</button>
                    </div>
                    <div class="col">
-                       <p id="userName" class="hudItem"></p>
-                   </div>
-                   <div class="col">
-                       <button type="button" data-toggle="modal" data-target="#minerUpgradeWindow" class="btn btn-primary" id="minerUpgradeBtn">Miner Upgrades</button>
-                   </div>
-                   <div class="col">
-                       <button type="button" data-toggle="modal" data-target="systemUpgradeWindow" class="btn btn-primary" id="systemUpgradeBtn">System Upgrades</button>
-                   </div>       
+                       <button type="button" data-toggle="modal" data-target="#systemUpgradeWindow" class="btn btn-primary hudBtn" id="systemUpgradeBtn">System Upgrades</button>
+                   </div>-->       
            </div>
         </div>
+                        <div class="modal fade" id="menuWindow" tabindex="-1" role="dialog" aria-labelledby="menu window" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="upgradeWindowTitle">Menu</h5>
+      </div>
+      <div class="modal-body">
+        <div class="container menuContainer">
+            <div class="row">
+               <div class="col">
+                   <button type="button" data-toggle="modal" data-target="#minerUpgradeWindow" class="btn hudBtn" id="">Miner Upgrades</button>
+               </div>
+               <div class="col">
+                   <button type="button" data-toggle="modal" data-target="#systemUpgradeWindow" class="btn hudBtn" id="">System Upgrades</button>
+               </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div> <!--end menu modal-->
 
             <div class="modal fade" id="minerUpgradeWindow" tabindex="-1" role="dialog" aria-labelledby="upgradeWindow" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -47,14 +75,14 @@
       <div class="modal-body">
         <div class="container">
             <div class="row">
-               <div class="col">
-                    <img src="./imgs/caffeine.png" class="upgradeImg"> 
+               <div class="col upgradeItem">
+                    <img src="./imgs/caffeine.png" class="upgradeImg "> 
                </div>
-                <div class="col-6 upgradeDesc">
-                    <p class="upgradeDesc">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys my fly off! (This upgrade will increase your passive money rate).</p>
+                <div class="col-6 upgradeDesc upgradeItem">
+                    <p class="upgradeDesc ">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys may fly off! (This upgrade will increase your passive money rate).</p>
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-primary upgBtn" id="caffeine">
+                <div class="col upgradeItem">
+                    <button type="button" class="btn hudBtn upgBtn" id="caffeine">
                         $1000
                     </button>
                 </div>
@@ -79,7 +107,7 @@
                     <img src="./imgs/caffeine.png" class="upgradeImg"> 
                </div>
                 <div class="col-6 upgradeDesc">
-                    <p class="upgradeDesc">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys my fly off! (This upgrade will increase your passive money rate).</p>
+                    <p class="upgradeDesc">Your miner chugs caffeine like his life depends on it and pecks at the keyboard so fast the keys may fly off! (This upgrade will increase your passive money rate).</p>
                 </div>
                 <div class="col">
                     <button type="button" class="btn btn-primary upgBtn" id="caffeine">
@@ -112,6 +140,9 @@
         var minerImg = document.querySelector("#minerContainer");
         var upgBtns = document.querySelectorAll(".upgBtn");
         
+        $(function(){
+           //$('.hudItem').matchHeight(); 
+        });
         upgBtns.forEach(function(btn){
            btn.addEventListener("click",function(){
               var gotUpg = myUser.updateUpg(btn.id);
@@ -138,7 +169,7 @@
         setInterval(function(){
             myUser.mine(system.getTimeToCoin());
             updateHud();
-        },10);
+        },100);
       </script>
   </body>
 </html>

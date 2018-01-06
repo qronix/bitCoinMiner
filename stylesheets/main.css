@@ -6,20 +6,22 @@ body{
     --float: left;
    --margin-right: 2%;
     user-select: none;
-}
-#bitCoins{
-    --float: left;
+    font-family: 'Share Tech Mono', monospace;
+    padding-top: 3%;
+    --margin-top: 4%;
+    --border: 1px solid red;
+    align-content: center;
+    text-align: center;
+    display: inline-block;
 }
 .main{
     border:1px solid white;
     height: 90vh;
+    margin: 0 auto;
     margin-top: 10%;
     margin-bottom: 10%;
+    padding: 0;
 }
-#minerContainer{
-
-}
-
 .miner{
     border:1px solid white;
     align-content: center;
@@ -38,8 +40,10 @@ body{
     display: none;
 }
 #upgradeWindowTitle{
-    color: black;
+    color: white;
+    background-color: black;
     margin: 0 auto;
+    font-family: 'Share Tech Mono', monospace;
 }
 .modal-body{
     color: black;
@@ -54,10 +58,117 @@ body{
 .upgradeImg{
     width: 50%;
     align-content: center;
+    text-align: center;
+    margin-top: 20%;
 }
 .upgradeDesc{
     align-content: center;
     margin: 0 auto;
     text-align: left;
     font-size: 90%;
+    color: white;
+}
+
+.hudBtn{
+    --font-size: 80%;
+    --padding: 22% 5px 0px 5px;
+    margin: 22% auto;
+   --height: 50%;
+    --width: 50%;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f6e6b4+0,ed9017+100;Yellow+3D+%231 */
+background: #f6e6b4; /* Old browsers */
+background: -moz-linear-gradient(top, #f6e6b4 0%, #ed9017 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #f6e6b4 0%,#ed9017 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=0 ); /* IE6-9 */
+    --border: 1px solid red;
+    --position: relative;
+    
+    --top:1%;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    text-align: center;
+    align-content: center;
+}
+
+.hudBtn:hover{
+    transform: scale(0.9);
+    box-shadow: 0 0 40px #3CB6CA;
+
+}
+#minerUpgradeBtn{
+    width: 100%;
+    --height: 100%;
+}
+
+.menuContainer{
+    padding-left: 12%;
+    --margin: 0 auto;
+    --border:1px solid black;
+}
+.modal-title{
+    user-select: none;
+    color: white;
+    background-color: white;
+    border-bottom: 1px dashed white;
+}
+
+#hud{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f6e6b4+0,ed9017+100;Yellow+3D+%231 */
+background: #f6e6b4; /* Old browsers */
+background: -moz-linear-gradient(top, #f6e6b4 0%, #ed9017 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #f6e6b4 0%,#ed9017 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=0 ); /* IE6-9 */
+}
+
+#bitCoinIco{
+    width: 40%;
+    --border: 1px solid black;
+    --padding: 0;
+    --margin: 5% auto;
+    --position: relative;
+    --top:-20%;
+    --padding-bottom: 20%;
+    --align-content: center;
+    --text-align: center;
+    --display: inline-block;
+    margin-top: 0.9em;
+    min-width: 22.4px;
+    --max-width: 30px;
+}
+#bitCoins{
+    text-align: left;
+}
+.bitCoin{
+    --border: 1px solid green;
+    --align-content: center;
+    text-align: right;
+    --display: inline-block;
+    padding: 0;
+
+}
+
+.modal-content{
+    background-color: black;
+    --opacity: 0.8;
+    --color: white !important;
+    --font-size: 300%;
+    border: 1px solid white;
+}
+div{
+    --border: 1px solid green;
+}
+
+.upgradeItem{
+    --border: 1px solid red;
+    align-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.upgBtn{
+    margin-top: 23%;
 }

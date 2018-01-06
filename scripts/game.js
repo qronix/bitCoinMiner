@@ -33,7 +33,7 @@ class User{
         return this.money;
     }
     getBitCoins(){
-        return this.bitCoins.toFixed(5);
+        return this.bitCoins.toFixed(8);
     }
     getUpgrades(){
         return this.upgrades;
@@ -49,7 +49,7 @@ class User{
 class System{
     constructor(){
         this.speed = 1.3; //Ghz
-        this.timeToCoin = 1000000/this.speed; //in seconds
+        this.timeToCoin = 100000000/this.speed; //in seconds
         this.multiplier = 1.0;
     }
     getTimeToCoin(){
